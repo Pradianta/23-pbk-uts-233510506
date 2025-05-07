@@ -29,7 +29,7 @@ function removeActivity(index) {
     <ul>
       <li v-for="(activity, index) in activities" :key="index">
         <input type="checkbox" v-model="activity.completed" />
-        <span>{{ activity.name }}</span>
+        <span :style="{ textDecoration: activity.completed ? 'line-through' : 'none' }">{{ activity.name }}</span>
         <button type="button" @click="removeActivity(index)" style="margin-left: 10px;">Hapus</button>
       </li>
     </ul>
