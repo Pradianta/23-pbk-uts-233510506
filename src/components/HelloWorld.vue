@@ -1,12 +1,16 @@
 <script setup>
 import { ref } from 'vue'
 
-const activities = ref(['olahraga', 'makan', 'tidur'])
+const activities = ref([
+  { name: 'olahraga', completed: false },
+  { name: 'makan', completed: false },
+  { name: 'tidur', completed: false }
+])
 const newActivity = ref('')
 
 function addActivity() {
   if (newActivity.value.trim() !== '') {
-    activities.value.push(newActivity.value.trim())
+    activities.value.push({ name: newActivity.value.trim(), completed: false })
     newActivity.value = ''
   }
 }
@@ -24,8 +28,9 @@ function removeActivity(index) {
 
     <ul>
       <li v-for="(activity, index) in activities" :key="index">
-        {{ activity }}
-        <button type="button" @click="removeActivity(index)" style="margin-left: 10px;">x</button>
+        <input type="checkbox" v-model="activity.completed" />
+        <span>{{ activity.name }}</span>
+        <button type="button" @click="removeActivity(index)" style="margin-left: 10px;">Hapus</button>
       </li>
     </ul>
   </div>
