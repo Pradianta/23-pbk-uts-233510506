@@ -10,6 +10,10 @@ function addActivity() {
     newActivity.value = ''
   }
 }
+
+function removeActivity(index) {
+  activities.value.splice(index, 1)
+}
 </script>
 
 <template>
@@ -19,7 +23,10 @@ function addActivity() {
     <button type="button" @click="addActivity">Submit</button>
 
     <ul>
-      <li v-for="(activity, index) in activities" :key="index">{{ activity }}</li>
+      <li v-for="(activity, index) in activities" :key="index">
+        {{ activity }}
+        <button type="button" @click="removeActivity(index)" style="margin-left: 10px;">x</button>
+      </li>
     </ul>
   </div>
 </template>
